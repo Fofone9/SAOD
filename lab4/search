@@ -1,0 +1,148 @@
+class table():
+    def __init__(self, array=[] ):
+        self.array=array
+        self.size=len(array)
+        self.FibonacciSearchSuccess = True
+    def setNewArray(self, array):
+        self.array = array
+        self.size=len(array)
+    def sequentialSearch(self, target):
+        for i, j in enumerate(self.array):
+            if j==target:
+                return i
+        return -1
+    def simpleBinarySearch(self, target):
+        l, r = 0, len(self.array)-1
+        while l<=r:
+            mid = (l+r)//2
+            if self.array[mid]==target:
+                return mid
+            elif self.array[mid]<target:
+                l=mid+1
+            elif self.array[mid]>target:
+                r=mid-1
+        return -1
+    def FibonacciSearch(self, target):
+        def startInit():
+            self.FibonacciSearchSuccess=True
+            first=0
+            second=1
+            temp=1
+            while temp<self.size+1:
+                first = second
+                second=temp
+                temp=first+second
+            M=temp-self.size-1
+            self.i=second-M
+            self.p = first
+            self.q=second-first
+        def goDown():
+            if self.q==0:
+                self.FibonacciSearchSuccess=False
+            self.i=self.i-self.q
+            temp=self.q
+            self.q=self.p-self.q
+            self.p=temp
+            
+        def goUp():
+            if self.p==1:
+                self.FibonacciSearchSuccess=False
+            self.i=self.i+self.q
+            self.p=self.p-self.q
+            self.q=self.q-self.p
+        startInit()
+        
+        while self.FibonacciSearchSuccess:
+            if self.i<0:
+                goUp()
+            elif self.i>=self.size:
+                goDown()
+            if self.array[self.i]==target:
+                return self.i
+            elif self.array[self.i]>target:
+                goDown()
+            elif self.array[self.i]<target:
+                goUp()
+        return -1
+    def interpolatingSearch(self, target):
+        l=0
+        r=self.size-1
+        if target>self.array[r] or target<self.array[l]:
+            return -1
+        while l<r:
+            mid = l+(r-l)*(target-self.array[l])//(self.array[r]-self.array[l])
+            if self.array[mid]==target:
+                return mid
+            elif self.array[mid]>target:
+                r=mid-1
+            elif self.array[mid]<target:
+                l=mid+1
+        if self.array[l]==target:
+            return l
+        elif self.array[r]==target:
+            return r
+        else:
+            return -1
+    
+
+class Node():
+        def __init__(self, val):
+            self.val = val
+            self.left = None
+            self.right = None
+
+
+class binaryTreeSearch():
+    def __init__(self, val):
+        self.root = Node(val)
+    def addToTree(self, val):
+        temp = self.root
+        while True:
+            if val>temp.val:
+                if temp.right==None:
+                    temp.right=Node(val)
+                    break
+                else:
+                    temp = temp.right
+            else:
+                if temp.left==None:
+                    temp.left=Node(val)
+                    break
+                else:
+                    temp = temp.left
+    def showTree(self):
+        temp = self.root
+        def show(temp):
+            print(temp.val)
+            if temp.left!=None:
+                show(temp.left)
+            if temp.right!=None:
+                show(temp.right)
+        show(temp)
+    def showRoot(self):
+        print(self.root.val)
+
+        
+
+
+                
+            
+
+        
+    
+
+
+s = table()
+a = [1,2,3,4,5]
+s.setNewArray(a)
+print(s.sequentialSearch(1))
+print(s.simpleBinarySearch(6))
+print(s.FibonacciSearch(6))
+print(s.interpolatingSearch(6))
+
+tree = binaryTreeSearch(10)
+tree.addToTree(9)
+tree.addToTree(13)
+tree.addToTree(1)
+tree.showTree()
+tree.showRoot()
