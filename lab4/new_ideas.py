@@ -73,7 +73,7 @@ class binariTree:
                 temp = temp.right
         return None
 
-    def show(self, node = root):
+    def show(self, node):
         if node.val is None:
             return
         print(node.val)
@@ -99,3 +99,4 @@ for i in searchArray:
         tree.deleteCount = 0
 print(delCount)
 print(addCount)
+tree.show(tree.root)

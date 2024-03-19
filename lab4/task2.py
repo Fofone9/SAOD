@@ -74,7 +74,7 @@ class binariTree:
                 temp = temp.right
         return None
 
-    def show(self, node = root):
+    def show(self, node):
         if node.val is None:
             return
         print(node.val)

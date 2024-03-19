@@ -1,5 +1,6 @@
 import random
 
+
 # ПОСЛЕДОВАТЕЛЬНЫЙ ПОИСК
 def sequentialSearch(array, target):
     count = 0
