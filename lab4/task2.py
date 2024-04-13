@@ -448,11 +448,11 @@ class RBTree:
 # Тесты
 import random
 array = list()
-size = 10000
-search_size = 10000
+size = 100000
+search_size = 1_000_000
 for i in range(size):
-    array.append(random.randint(0, 10000))
-someTree = RBTree(random.randint(0, 10000))
+    array.append(random.randint(0, 1000000))
+someTree = RBTree(random.randint(0, 1000000))
 biTree = binariTree(someTree.root.val)
 for i in array:
     someTree.add(i)
@@ -465,7 +465,7 @@ rb_delete_count = 0
 rb_add_count = 0
 count = 0
 for i in range(search_size):
-    search_array.append(random.randint(0, 10000))
+    search_array.append(random.randint(0, 1000000))
 for i in search_array:
     isFind = someTree.search(i)
     if isFind is None:
