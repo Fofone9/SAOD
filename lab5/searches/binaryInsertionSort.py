@@ -18,6 +18,7 @@ class binaryInsertionSort:
         if target >= self.array[end-1]:
             return end
         while l < r:
+            self.comparisonCount += 1
             m = (l+r)//2
             if self.array[m] == target:
                 return m
@@ -25,6 +26,7 @@ class binaryInsertionSort:
                 r = m-1
             else:
                 l = m+1
+        self.comparisonCount += 1
         if r <= 0 and self.array[0] >= target:
             return 0
         elif self.array[r-1] < target and self.array[r] >= target:
@@ -37,6 +39,7 @@ class binaryInsertionSort:
             key = self.array[i]
             startPosition = self.binarySearch(key, i)
             for j in range(startPosition, i+1):
+                self.forwardingCount += 1
                 temp = self.array[j]
                 self.array[j] = key
                 key = temp
@@ -45,10 +48,11 @@ class binaryInsertionSort:
         for i in self.array:
             print(i, end=' ')
         print()
+        print('Колическтво пересылок:', self.forwardingCount)
+        print('Количество сравнений', self.comparisonCount)
 
 
 test = binaryInsertionSort()
 test.setArray(10)
-test.show()
 test.sort()
 test.show()

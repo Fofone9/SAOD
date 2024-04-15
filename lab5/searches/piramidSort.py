@@ -4,6 +4,8 @@ import random
 class piramidSort:
     def __init__(self):
         self.array = list()
+        self.forwardingCount = 0
+        self.comparisonCount = 0
 
     def setArray(self, size):
         self.array = list()
@@ -20,11 +22,14 @@ class piramidSort:
 
     def swap(self, i, j):
         self.array[i], self.array[j] = self.array[j], self.array[i]
+        self.forwardingCount += 1
 
     def siftDown(self, i, upper):
         while (True):
             l, r = i*2+1, i*2+2
+            self.comparisonCount += 1
             if max(l, r) < upper:
+                self.comparisonCount += 1
                 if self.array[i] >= max(self.array[l], self.array[r]):
                     break
                 elif self.array[l] > self.array[r]:
@@ -34,12 +39,14 @@ class piramidSort:
                     self.swap(i, r)
                     i = r
             elif l < upper:
+                self.comparisonCount += 1
                 if self.array[l] > self.array[i]:
                     self.swap(i, l)
                     i = l
                 else:
                     break
             elif r < upper:
+                self.comparisonCount += 1
                 if self.array[r] > self.array[i]:
                     self.swap(i, r)
                     i = r
@@ -52,10 +59,12 @@ class piramidSort:
         for i in self.array:
             print(i, end=' ')
         print()
+        print('Колическтво пересылок:', self.forwardingCount)
+        print('Количество сравнений', self.comparisonCount)
 
 
 test = piramidSort()
 test.setArray(10)
-test.show()
+
 test.sort()
 test.show()

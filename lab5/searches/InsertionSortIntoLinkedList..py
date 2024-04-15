@@ -31,6 +31,7 @@ class simpleInsertionSort:
             next = temp.next
             while key is not None and key.val > temp.val:
                 key = key.past
+                self.comparisonCount += 1
             temp.past.next = temp.next
             if temp.next is not None:
                 temp.next.past = temp.past
@@ -39,6 +40,7 @@ class simpleInsertionSort:
                 temp.next = self.array
                 temp.past = None
                 self.array = temp
+                self.forwardingCount += 1
             else:
                 thisNext = key.next
                 key.next = temp
@@ -46,6 +48,7 @@ class simpleInsertionSort:
                 if thisNext is not None:
                     thisNext.past = temp
                 temp.next = thisNext
+                self.forwardingCount += 1
             temp = next
 
     def show(self):
@@ -54,11 +57,12 @@ class simpleInsertionSort:
             print(temp.val, end=' ')
             temp = temp.next
         print()
+        print('Колическтво пересылок:', self.forwardingCount)
+        print('Количество сравнений', self.comparisonCount)
 
 
 test = simpleInsertionSort()
 test.setArray(10)
-test.show()
 test.sort()
 test.show()
 

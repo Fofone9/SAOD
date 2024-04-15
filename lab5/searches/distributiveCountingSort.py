@@ -3,6 +3,8 @@ class distributiveCountingSort:
     def __init__(self):
         self.size = 0
         self.array = list()
+        self.forwardingCount = 0
+        self.comparisonCount = 0
 
     def setArray(self, size):
         self.array = list()
@@ -18,27 +20,40 @@ class distributiveCountingSort:
         support = [0 for i in range(n)]
         for element in self.array:
             support[element-minKey] += 1
+            self.comparisonCount += 1
+
         size = self.size
         for i in range(n-1, -1, -1):
             size -= support[i]
             support[i] = size
+            self.comparisonCount += 1
         result = [0 for i in range(self.size)]
         for elem in self.array:
             result[support[elem-minKey]] = elem
             support[elem-minKey] += 1
+            self.forwardingCount += 1
         self.array = result
 
     def getMinMax(self):
-        return(min(self.array), max(self.array))
+        minimum = self.array[0]
+        maximum = self.array[0]
+        for i in self.array:
+            if i < minimum:
+                minimum = i
+            if i> maximum:
+                maximum = i
+            self.comparisonCount += 2
+        return(minimum, maximum)
 
     def show(self):
         for i in self.array:
             print(i, end=' ')
         print()
+        print('Колическтво пересылок:', self.forwardingCount)
+        print('Количество сравнений', self.comparisonCount)
 
 
 test = distributiveCountingSort()
 test.setArray(10)
-test.show()
 test.sort()
 test.show()

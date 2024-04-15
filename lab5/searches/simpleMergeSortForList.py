@@ -11,6 +11,8 @@ class simpleMergeSort:
     def __init__(self):
         self.root = Node(random.randint(0, 10))
         self.size = 0
+        self.forwardingCount = 0
+        self.comparisonCount = 0
 
     def setList(self, size):
         self.size = size
@@ -36,32 +38,40 @@ class simpleMergeSort:
         i = l
         j = mid+1
         result = None
+        self.comparisonCount += 1
         if leftRoot.val < rightRoot.val:
+            self.forwardingCount += 1
             result = Node(leftRoot.val)
             i += 1
             leftRoot = leftRoot.next
         else:
+            self.forwardingCount += 1
             result = Node(rightRoot.val)
             j += 1
             rightRoot = rightRoot.next
         resultRoot = result
         while i <= mid and j <= r:
+            self.comparisonCount += 1
             if leftRoot.val < rightRoot.val:
+                self.forwardingCount += 1
                 result.next = Node(leftRoot.val)
                 i += 1
                 result = result.next
                 leftRoot = leftRoot.next
             else:
+                self.forwardingCount += 1
                 result.next = Node(rightRoot.val)
                 j += 1
                 result = result.next
                 rightRoot = rightRoot.next
         while i <= mid:
+            self.forwardingCount += 1
             result.next = Node(leftRoot.val)
             i += 1
             result = result.next
             leftRoot = leftRoot.next
         while j <= r:
+            self.forwardingCount += 1
             result.next = Node(rightRoot.val)
             j += 1
             result = result.next
@@ -79,10 +89,11 @@ class simpleMergeSort:
             print(temp.val, end=' ')
             temp = temp.next
         print()
+        print('Колическтво пересылок:', self.forwardingCount)
+        print('Количество сравнений', self.comparisonCount)
 
 
 test = simpleMergeSort()
 test.setList(10)
-test.show()
 test.sort()
 test.show()

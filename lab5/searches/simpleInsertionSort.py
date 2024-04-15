@@ -17,19 +17,23 @@ class simpleInsertionSort:
             key = self.array[i]
             j = i-1
             while key < self.array[j] and j>=0:
+                self.comparisonCount += 1
+                self.forwardingCount += 1
                 self.array[j+1] = self.array[j]
                 j -= 1
             self.array[j+1] = key
+            self.forwardingCount += 1
 
     def show(self):
         for i in self.array:
             print(i, end=' ')
         print()
+        print('Колическтво пересылок:', self.forwardingCount)
+        print('Количество сравнений', self.comparisonCount)
 
 
 test = simpleInsertionSort()
 test.setArray(10)
-test.show()
 test.sort()
 test.show()
 

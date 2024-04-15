@@ -4,6 +4,8 @@ import random
 class simpleMergeSort:
     def __init__(self):
         self.array = list()
+        self.forwardingCount = 0
+        self.comparisonCount = 0
 
     def setArray(self, size):
         self.array = list()
@@ -18,17 +20,23 @@ class simpleMergeSort:
         result = list()
         i = 0
         j = 0
+
         while i < len(leftArray) and j < len(rightArray):
+            self.comparisonCount += 1
             if leftArray[i] < rightArray[j]:
+                self.forwardingCount += 1
                 result.append(leftArray[i])
                 i += 1
             else:
+                self.forwardingCount += 1
                 result.append(rightArray[j])
                 j += 1
         while i < len(leftArray):
+            self.forwardingCount += 1
             result.append(leftArray[i])
             i += 1
         while j < len(rightArray):
+            self.forwardingCount += 1
             result.append(rightArray[j])
             j += 1
         return result
@@ -40,10 +48,11 @@ class simpleMergeSort:
         for i in self.array:
             print(i, end=' ')
         print()
+        print('Колическтво пересылок:', self.forwardingCount)
+        print('Количество сравнений', self.comparisonCount)
 
 
 test = simpleMergeSort()
 test.setArray(10)
-test.show()
 test.sort()
 test.show()

@@ -21,11 +21,15 @@ class bubbleSort:
             t = 0
             y = self.size
             for i in range(a, b-1):
+                self.comparisonCount += 1
                 if self.array[i] > self.array[i+1]:
+                    self.forwardingCount += 1
                     self.array[i], self.array[i + 1] = self.array[i+1],self.array[i]
                     t = i
             for i in range(t+1, a,-1):
+                self.comparisonCount += 1
                 if self.array[i] < self.array[i-1]:
+                    self.forwardingCount += 1
                     self.array[i], self.array[i - 1] = self.array[i-1],self.array[i]
                     y = i
             b = t+1
@@ -35,11 +39,12 @@ class bubbleSort:
         for i in self.array:
             print(i, end=' ')
         print()
+        print('Колическтво пересылок:', self.forwardingCount)
+        print('Количество сравнений', self.comparisonCount)
 
 
 test = bubbleSort()
 test.setArray(10)
-test.show()
 test.sort()
 test.show()
 
