@@ -2,8 +2,10 @@ import random
 
 
 class piramidSort:
-    def __init__(self):
+    def __init__(self, size):
         self.array = list()
+        for i in range(size):
+            self.array.append(random.randint(0, 10))
         self.forwardingCount = 0
         self.comparisonCount = 0
 
@@ -63,8 +65,4 @@ class piramidSort:
         print('Количество сравнений', self.comparisonCount)
 
 
-test = piramidSort()
-test.setArray(10)
 
-test.sort()
-test.show()

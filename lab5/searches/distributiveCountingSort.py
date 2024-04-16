@@ -1,8 +1,10 @@
 import random
 class distributiveCountingSort:
-    def __init__(self):
-        self.size = 0
+    def __init__(self, size):
         self.array = list()
+        self.size = size
+        for i in range(size):
+            self.array.append(random.randint(10, 25))
         self.forwardingCount = 0
         self.comparisonCount = 0
 
@@ -53,7 +55,4 @@ class distributiveCountingSort:
         print('Количество сравнений', self.comparisonCount)
 
 
-test = distributiveCountingSort()
-test.setArray(10)
-test.sort()
-test.show()
+

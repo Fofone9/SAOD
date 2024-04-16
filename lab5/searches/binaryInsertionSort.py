@@ -52,7 +52,4 @@ class binaryInsertionSort:
         print('Количество сравнений', self.comparisonCount)
 
 
-test = binaryInsertionSort()
-test.setArray(10)
-test.sort()
-test.show()
+

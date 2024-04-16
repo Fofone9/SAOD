@@ -2,8 +2,10 @@ import random
 
 
 class digitalSort:
-    def __init__(self):
+    def __init__(self, size):
         self.array = list()
+        for i in range(size):
+            self.array.append(random.randint(0, 1000))
         self.forwardingCount = 0
         self.comparisonCount = 0
 
@@ -19,6 +21,8 @@ class digitalSort:
             for elem in self.array:
                 digit = (elem//10**i)%10
                 temp[digit].append((elem))
+                self.forwardingCount += 1
+                self.comparisonCount += 1
             self.array = []
             for row in temp:
                 self.array.extend(row)
@@ -29,8 +33,4 @@ class digitalSort:
             print(i, end=' ')
         print()
 
-test = digitalSort()
-test.setArray(12)
-test.show()
-test.sort()
-test.show()
+

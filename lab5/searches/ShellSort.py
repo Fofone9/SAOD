@@ -39,9 +39,3 @@ class ShellSort:
         print('Колическтво пересылок:', self.forwardingCount)
         print('Количество сравнений', self.comparisonCount)
 
-
-test = ShellSort()
-test.setArray(10)
-
-test.sort()
-test.show()

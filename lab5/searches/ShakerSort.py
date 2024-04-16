@@ -43,8 +43,4 @@ class bubbleSort:
         print('Количество сравнений', self.comparisonCount)
 
 
-test = bubbleSort()
-test.setArray(10)
-test.sort()
-test.show()
 

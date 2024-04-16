@@ -7,10 +7,15 @@ class Node:
         self.next = None
 
 
-class simpleMergeSort:
-    def __init__(self):
+class simpleMergeSortForList:
+    def __init__(self, size):
         self.root = Node(random.randint(0, 10))
-        self.size = 0
+        self.size = size
+        temp = self.root
+        for i in range(size - 1):
+            node = Node(random.randint(0, 10))
+            temp.next = node
+            temp = temp.next
         self.forwardingCount = 0
         self.comparisonCount = 0
 
@@ -93,7 +98,3 @@ class simpleMergeSort:
         print('Количество сравнений', self.comparisonCount)
 
 
-test = simpleMergeSort()
-test.setList(10)
-test.sort()
-test.show()

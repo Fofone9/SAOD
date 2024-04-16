@@ -8,12 +8,18 @@ class Node:
         self.val = val
 
 
-class simpleInsertionSort:
-    def __init__(self):
+class InsertionSortIntoLinkedList:
+    def __init__(self, size):
         self.forwardingCount = 0
         self.comparisonCount = 0
         self.size = 0
-        self.array = None
+        self.array = Node(random.randint(0, 10))
+        self.size = size
+        temp = self.array
+        for i in range(size - 1):
+            temp.next = Node(random.randint(0, 10))
+            temp.next.past = temp
+            temp = temp.next
 
     def setArray(self, size):
         self.array = Node(random.randint(0, 10))
@@ -34,13 +40,14 @@ class simpleInsertionSort:
                 self.comparisonCount += 1
             temp.past.next = temp.next
             if temp.next is not None:
+                self.forwardingCount += 1
                 temp.next.past = temp.past
             if key is None:
                 self.array.past = temp
                 temp.next = self.array
                 temp.past = None
                 self.array = temp
-                self.forwardingCount += 1
+                self.forwardingCount += 2
             else:
                 thisNext = key.next
                 key.next = temp
@@ -48,7 +55,7 @@ class simpleInsertionSort:
                 if thisNext is not None:
                     thisNext.past = temp
                 temp.next = thisNext
-                self.forwardingCount += 1
+                self.forwardingCount += 2
             temp = next
 
     def show(self):
@@ -61,8 +68,4 @@ class simpleInsertionSort:
         print('Количество сравнений', self.comparisonCount)
 
 
-test = simpleInsertionSort()
-test.setArray(10)
-test.sort()
-test.show()
 

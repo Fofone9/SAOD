@@ -2,10 +2,12 @@ import random
 
 
 class simpleInsertionSort:
-    def __init__(self):
+    def __init__(self, size):
         self.forwardingCount = 0
         self.comparisonCount = 0
         self.array = list()
+        for i in range(size):
+            self.array.append(random.randint(0, 100000))
 
     def setArray(self, size):
         self.array = list()
@@ -32,8 +34,5 @@ class simpleInsertionSort:
         print('Количество сравнений', self.comparisonCount)
 
 
-test = simpleInsertionSort()
-test.setArray(10)
-test.sort()
-test.show()
+
 

@@ -26,11 +26,13 @@ class stack:
 
 
 class quickSort:
-    def __init__(self):
+    def __init__(self, size):
         self.forwardingCount = 0
         self.comparisonCount = 0
         self.array = list()
-        self.size = 0
+        self.size = size
+        for i in range(size):
+            self.array.append(random.randint(0, 100000))
 
     def setArray(self, size):
         self.array = list()
@@ -44,21 +46,32 @@ class quickSort:
         while f < l:
             k = random.randint(f, l)
             self.array[f], self.array[k] = self.array[k], self.array[f]
+            self.forwardingCount += 1
+
             i = f+1
-            while i<self.size and self.array[i] < self.array[f]:
+
+            while i < self.size and self.array[i] < self.array[f]:
+                self.comparisonCount += 1
                 i = i + 1
             j = l
             while self.array[j] > self.array[f]:
+                self.comparisonCount += 1
                 j = j - 1
             while i < j:
+                self.comparisonCount += 1
+                self.forwardingCount += 1
                 self.array[i], self.array[j] = self.array[j], self.array[i]
                 i += 1
-                while self.array[i]< self.array[f]:
+                while self.array[i] < self.array[f]:
+                    self.comparisonCount += 1
                     i += 1
                 j -= 1
                 while self.array[j] > self.array[f]:
+                    self.comparisonCount += 1
                     j -= 1
+            self.forwardingCount += 1
             self.array[f], self.array[j] = self.array[j], self.array[f]
+            self.comparisonCount += 1
             if j-1 <= f and l <= j+1:
                 node = S.pop()
                 f = node.f
@@ -68,7 +81,7 @@ class quickSort:
             elif j-1 > f and l <= j+1:
                 l = j-1
             elif j-1 > f and l >= j+1:
-                if j-f>l-j:
+                if j-f > l-j:
                     S.push(f, j-1)
                     f = j+1
                 else:
@@ -81,8 +94,3 @@ class quickSort:
             print(i, end=' ')
         print()
 
-test = quickSort()
-test.setArray(10)
-test.show()
-test.sort()
-test.show()
