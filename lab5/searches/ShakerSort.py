@@ -12,7 +12,7 @@ class bubbleSort:
         self.array = list()
         self.size = size
         for i in range(size):
-            self.array.append(random.randint(0, 10))
+            self.array.append(random.randint(0, 100000))
 
     def sort(self):
         a = 0

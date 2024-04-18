@@ -22,13 +22,10 @@ class distributiveCountingSort:
         support = [0 for i in range(n)]
         for element in self.array:
             support[element-minKey] += 1
-            self.comparisonCount += 1
-
         size = self.size
         for i in range(n-1, -1, -1):
             size -= support[i]
             support[i] = size
-            self.comparisonCount += 1
         result = [0 for i in range(self.size)]
         for elem in self.array:
             result[support[elem-minKey]] = elem

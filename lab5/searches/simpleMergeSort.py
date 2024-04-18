@@ -5,7 +5,7 @@ class simpleMergeSort:
     def __init__(self, size):
         self.array = list()
         for i in range(size):
-            self.array.append(random.randint(0, 10))
+            self.array.append(random.randint(0, 100000))
         self.forwardingCount = 0
         self.comparisonCount = 0
 

@@ -12,7 +12,7 @@ class ShellSort:
         self.array = list()
         self.h = list()
         for i in range(size):
-            self.array.append(random.randint(0, 10))
+            self.array.append(random.randint(0, 100000))
         i = 1
         while i < size:
             self.h.append(i)

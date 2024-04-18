@@ -18,7 +18,7 @@ class simpleInsertionSort:
         for i in range(1, len(self.array)):
             key = self.array[i]
             j = i-1
-            while key < self.array[j] and j>=0:
+            while key < self.array[j] and j >= 0:
                 self.comparisonCount += 1
                 self.forwardingCount += 1
                 self.array[j+1] = self.array[j]

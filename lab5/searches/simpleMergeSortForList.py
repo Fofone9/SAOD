@@ -9,11 +9,11 @@ class Node:
 
 class simpleMergeSortForList:
     def __init__(self, size):
-        self.root = Node(random.randint(0, 10))
+        self.root = Node(random.randint(0, 100000))
         self.size = size
         temp = self.root
         for i in range(size - 1):
-            node = Node(random.randint(0, 10))
+            node = Node(random.randint(0, 100000))
             temp.next = node
             temp = temp.next
         self.forwardingCount = 0
