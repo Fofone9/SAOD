@@ -39,6 +39,7 @@ class quickSort:
         self.size = size
         for i in range(size):
             self.array.append(random.randint(0, 100000))
+
     def sort(self):
         S = stack(0,0)
         f = 0
@@ -47,15 +48,12 @@ class quickSort:
             k = random.randint(f, l)
             self.array[f], self.array[k] = self.array[k], self.array[f]
             self.forwardingCount += 1
-
             i = f+1
-
             while i < self.size and self.array[i] < self.array[f]:
                 self.comparisonCount += 1
                 i = i + 1
             j = l
             while self.array[j] > self.array[f]:
-                self.comparisonCount += 1
                 j = j - 1
             while i < j:
                 self.comparisonCount += 1
@@ -63,16 +61,15 @@ class quickSort:
                 self.array[i], self.array[j] = self.array[j], self.array[i]
                 i += 1
                 while self.array[i] < self.array[f]:
-                    self.comparisonCount += 1
                     i += 1
                 j -= 1
                 while self.array[j] > self.array[f]:
-                    self.comparisonCount += 1
                     j -= 1
             self.forwardingCount += 1
             self.array[f], self.array[j] = self.array[j], self.array[f]
             self.comparisonCount += 1
             if j-1 <= f and l <= j+1:
+                self.forwardingCount += 1
                 node = S.pop()
                 f = node.f
                 l = node.l
@@ -82,9 +79,11 @@ class quickSort:
                 l = j-1
             elif j-1 > f and l >= j+1:
                 if j-f > l-j:
+                    self.forwardingCount += 1
                     S.push(f, j-1)
                     f = j+1
                 else:
+                    self.forwardingCount += 1
                     S.push(j+1, l)
                     l = j-1
         S.clear()
@@ -93,4 +92,10 @@ class quickSort:
         for i in self.array:
             print(i, end=' ')
         print()
+        print('Количесвто сравнений', self.comparisonCount)
+        print('количество перестановок', self.forwardingCount)
 
+#
+# test = quickSort(2000)
+# test.sort()
+# test.show()

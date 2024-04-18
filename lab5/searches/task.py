@@ -15,7 +15,7 @@ def vivod(name, forwCount, compCount):
     print('количесвто сравнений', str(compCount))
 
 
-test_count = 10
+test_count = 100
 
 for i in range(5):
     array_size = 2000 + 2000*i
@@ -93,13 +93,13 @@ for i in range(5):
         simpleMergeSortForList_comparisonCount += simpleMergeSortForListObj.comparisonCount
         simpleMergeSortForList_forwardingCount += simpleMergeSortForListObj.forwardingCount
     print('Количество элементов', str(array_size))
-    vivod('Простая сортировка вставками.', simpleInsertionSort_forwardingCount/1000, simpleInsertionSort_comparisonCount/1000)
-    vivod('Сортировка вставками в связанный список.', InsertionSortIntoLinkedList_forwardingCount/1000, InsertionSortIntoLinkedList_comparisonCount/1000)
-    vivod('Пузырьковая сортировка.', bubbleSort_forwardingCount/1000, bubbleSort_comparisonCount/1000)
-    vivod('Быстрая сортировка.', quickSort_forwardingCount/1000, quickSort_comparisonCount/1000)
-    vivod('Цифровая обменная сортировка.', digitalSort_forwardingCount/1000, digitalSort_comparisonCount/1000)
-    vivod('Пирамидальная сортировка.', piramidSort_forwardingCount/1000, piramidSort_comparisonCount/1000)
-    vivod('Сортировка распределяющим подсчетом.', distributiveCountingSort_forwardingCount/1000, distributiveCountingSort_comparisonCount/1000)
-    vivod('Сортировка простым двухпутевым слиянием.', simpleMergeSort_forwardingCount/1000, simpleMergeSort_comparisonCount/1000)
-    vivod('Сортировка слиянием списков для простого двухпутевого слияния.', simpleMergeSortForList_forwardingCount/1000, simpleMergeSortForList_comparisonCount/1000)
+    vivod('Простая сортировка вставками.', simpleInsertionSort_forwardingCount/100, simpleInsertionSort_comparisonCount/100)
+    vivod('Сортировка вставками в связанный список.', InsertionSortIntoLinkedList_forwardingCount/100, InsertionSortIntoLinkedList_comparisonCount/100)
+    vivod('Пузырьковая сортировка.', bubbleSort_forwardingCount/100, bubbleSort_comparisonCount/100)
+    vivod('Быстрая сортировка.', quickSort_forwardingCount/100, quickSort_comparisonCount/100)
+    vivod('Цифровая обменная сортировка.', digitalSort_forwardingCount/100, digitalSort_comparisonCount/100)
+    vivod('Пирамидальная сортировка.', piramidSort_forwardingCount/100, piramidSort_comparisonCount/100)
+    vivod('Сортировка распределяющим подсчетом.', distributiveCountingSort_forwardingCount/100, distributiveCountingSort_comparisonCount/100)
+    vivod('Сортировка простым двухпутевым слиянием.', simpleMergeSort_forwardingCount/100, simpleMergeSort_comparisonCount/100)
+    vivod('Сортировка слиянием списков для простого двухпутевого слияния.', simpleMergeSortForList_forwardingCount/100, simpleMergeSortForList_comparisonCount/100)
     print()

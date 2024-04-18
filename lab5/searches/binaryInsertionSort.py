@@ -10,7 +10,7 @@ class binaryInsertionSort:
     def setArray(self, size):
         self.array = list()
         for i in range(size):
-            self.array.append(random.randint(0, 10))
+            self.array.append(random.randint(0, 100000))
 
     def binarySearch(self, target, end):
         l = 0
