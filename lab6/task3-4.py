@@ -82,11 +82,6 @@ class Graf:
             answer += minEdgeWeight
         print(answer)
 
-
-
-
-
-
     def show(self):
         for i in self.nodes.keys():
             node = self.nodes[i]
