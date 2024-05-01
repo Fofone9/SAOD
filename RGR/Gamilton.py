@@ -81,6 +81,13 @@ class Graf:
                 G.add_edge(i, j.adjasentNode.val)
         nx.draw(G, with_labels = True);
         plt.show()
+        way = nx.Graph()
+        for i in self.nodes.keys():
+            way.add_node(i)
+        for i in range(1,len(self.way)):
+            way.add_edge(self.way[i-1], self.way[i])
+        nx.draw(way, with_labels=True);
+        plt.show()
 
 g = Graf()
 g.addEdge(1, 2)
@@ -143,6 +150,5 @@ g.addEdge(19, 20)
 g.addEdge(20, 19)
 g.addEdge(20, 16)
 g.addEdge(16, 20)
-g.show()
 g.createHamiltonCycle()
-
+g.show()
