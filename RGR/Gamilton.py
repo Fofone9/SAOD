@@ -18,6 +18,7 @@ class Graf:
         self.nodes = dict()
         self.edges = dict()
         self.start = None
+        self.visited = list()
         self.path = list()
         self.size = 0
 
@@ -42,41 +43,33 @@ class Graf:
 
     def createHamiltonCycle(self):
         for key in self.nodes.keys():
-            current = [self.nodes[key]]
-            start = current[0]
-            visited = list()
-            while len(current) != 0:
-                node = current.pop()
-                if node not in visited:
-                    visited.append(node)
-                # else:
-                #     visited.pop()
-                #     continue
-                edges = node.edge
-                if len(visited) == self.size and start.val in edges.keys():
-                    listing = [item.val for item in visited]
-                    listing.append(start.val)
-                    self.path.append(listing)
-                nextNodesForAddToCurrent = list()
-                for edge in edges.values():
-                    nextNode = edge.adjasentNode
-                    if nextNode not in visited:
-                        nextNodesForAddToCurrent.append(nextNode)
-                current += nextNodesForAddToCurrent
-                if len(nextNodesForAddToCurrent) == 0:
-                    visited.pop()
-                    while True:
-                        temp = visited[-1]
-                        nextNodes = list()
-                        edges = temp.edge
-                        for edge in edges.values():
-                            nextNode = edge.adjasentNode
-                            if nextNode not in visited:
-                                nextNodes.append(nextNode)
-                        if len(nextNodes) == 1:
-                            visited.pop()
-                        else:
-                            break
+            node = self.nodes[key]
+            self.start = node
+            self.visited.append(node)
+            edges = node.edge.values()
+            current = list()
+            for edge in edges:
+                nextNode = edge.adjasentNode
+                if nextNode not in self.visited:
+                    current.append(node)
+            self.repiter(current)
+            self.visited.pop()
+
+    def repiter(self, cur):
+        for node in cur:
+            self.visited.append(node)
+            edges = node.edge.values()
+            if len(self.visited) == self.size and self.start in [edge.adjasentNode for edge in edges]:
+                self.path.append([item.val for item in self.visited])
+            current = list()
+            for edge in edges:
+                nextNode = edge.adjasentNode
+                if nextNode not in self.visited:
+                    current.append(node)
+            if len(current) != 0:
+                self.repiter(current)
+            self.visited.pop()
+
     def showPath(self):
         for path in self.path:
             print('-'.join([str(item) for item in path]))
