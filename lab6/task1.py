@@ -40,4 +40,5 @@ data = [[7,5,1],[7,6,1],[6,4,1],[8,-1,1],[5,9,1]]
 graf = Graf()
 for i in data:
     graf.addEdge(i[0],i[1],i[2])
+    print(', '.join([str(d) for d in i]))
 graf.show()

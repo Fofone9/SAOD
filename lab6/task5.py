@@ -1,3 +1,5 @@
+import networkx as nx
+import matplotlib.pyplot as plt
 class StackNode:
     def __init__(self, val):
         self.val = val
@@ -49,6 +51,8 @@ class Graf:
         self.i = 0
         self.j = 0
         self.C = list()
+        self.edges = dict()
+        self.size = 0
 
     def addNode(self, val):
         node = Node(val)
@@ -57,9 +61,14 @@ class Graf:
     def addEdge(self, start, end):
         if start not in self.nodes.keys():
             self.nodes[start] = Node(start)
+            self.edges[start] = list()
+            self.size += 1
         if end not in self.nodes.keys():
             self.nodes[end] = Node(end)
+            self.edges[end] = list()
+            self.size += 1
         edge = Edge(self.nodes[end])
+        self.edges[start].append(edge)
         self.nodes[start].edge[end] = edge
 
     def task(self):
@@ -96,6 +105,14 @@ class Graf:
     def showTask(self):
         for i in self.C:
             print(i)
+            g = nx.Graph()
+            for node in i:
+                g.add_node(node)
+            for j in range (1,len(i)):
+                g.add_edge(i[j-1], i[j])
+            nx.draw(g, with_labels=True);
+            plt.show()
+
 
     def show(self):
         for i in self.nodes.keys():
@@ -103,6 +120,14 @@ class Graf:
             for j in node.edge.keys():
                 edge = node.edge[j]
                 print(node.val, '-', edge.adjasentNode.val)
+        G = nx.Graph()
+        for i in self.nodes.keys():
+            G.add_node(i)
+        for i in self.edges.keys():
+            for j in self.edges[i]:
+                G.add_edge(i, j.adjasentNode.val)
+        nx.draw(G, with_labels=True);
+        plt.show()
 
 
 graf = Graf()
@@ -118,3 +143,4 @@ for key in data.keys():
         graf.addEdge(key, elem)
 graf.task()
 graf.showTask()
+graf.show()
